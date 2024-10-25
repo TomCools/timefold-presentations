@@ -84,8 +84,8 @@ function extractLayers() {
 cat src/script/templates/slidedeck-header.html > slidedecks/inventory.html
 
 # Upstream images
-processImages "${timefoldSolverDir}/docs/src/modules/ROOT/images" "${timefoldPresentationsDir}/src/content/timefold-solver-docs"
-processImages "${timefoldQuickstartsDir}" "${timefoldPresentationsDir}/src/content/timefold-quickstarts"
+#processImages "${timefoldSolverDir}/docs/src/modules/ROOT/images" "${timefoldPresentationsDir}/src/content/timefold-solver-docs"
+#processImages "${timefoldQuickstartsDir}" "${timefoldPresentationsDir}/src/content/timefold-quickstarts"
 
 #for modelId in `ls ${timefoldModelsDir}`;
 #do
@@ -94,7 +94,9 @@ processImages "${timefoldQuickstartsDir}" "${timefoldPresentationsDir}/src/conte
 #done
 
 # A selection of static images
-extractLayers src/content/static/benchmarks/bruteForceHitsTheWall.svg
+#extractLayers src/content/static/benchmarks/bruteForceHitsTheWall.svg
+extractLayers src/content/static/benchmarks/bruteForceHitsTheWall-TSP.svg
+
 
 cat src/script/templates/slidedeck-footer.html >> slidedecks/inventory.html
 git add slidedecks/inventory.html
