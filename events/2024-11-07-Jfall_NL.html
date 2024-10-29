@@ -1,6 +1,6 @@
 <!doctype html>
 <!--suppress HtmlRequiredAltAttribute -->
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>J-Fall 2024</title>
@@ -8,7 +8,7 @@
     <!--    <link href="https://github.com/TimefoldAI/timefold-presentations" rel="canonical">-->
 
     <link rel="stylesheet" href="../src/web/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../src/web/reveal/css/reveal5.css">
+    <link rel="stylesheet" href="../src/web/reveal/css/reveal.css">
     <link rel="stylesheet" href="../src/web/reveal/css/theme/simple.css" id="theme">
     <script>
         if (window.location.search.match(/print-pdf/gi)) {
@@ -16,7 +16,7 @@
         }
     </script>
     <style>
-        .countdown-container {
+        .endingcard {
             text-align: center;
             padding: 20px;
             background: linear-gradient(to right, rgba(255,77,77,0.95), rgba(0,107,60,0.95)), url("../src/content/static/santa/route.webp");
@@ -27,41 +27,12 @@
             margin: 20px auto;
         }
 
-        .countdown-title {
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .time-section {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 5px;
-            min-width: 80px;
-        }
-
-        .time-value {
-            font-size: 60px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .time-label {
-            font-size: 14px;
-            text-transform: uppercase;
-        }
-
         .highlight {
             color: #3e00ff;
         }
     </style>
     <link rel="stylesheet" href="../src/web/reveal/plugin/highlight/a11y-light.css">
-    <link rel="stylesheet" href="../src/web/timefold-presentation-reveal-5.css">
+    <link rel="stylesheet" href="../src/web/timefold-presentation.css">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -79,7 +50,7 @@
     <div class="slides">
         <section>
             <h2>
-                Optimizing Santa's Travels
+                Optimizing Santa's Travels 🎄
             </h2>
             <div style="margin-top: 80px;">
                 <p>
@@ -91,11 +62,7 @@
         <section>
             <section>Halloween is behind us</section>
             <section>Days are getting darker and colder</section>
-            <section>Christmas is upon us!</section>
-
-            <section>
-                Enterprise
-            </section>
+            <section><christmas-countdown></christmas-countdown></section>
             <section data-background-image="../src/content/static/santa/productionline.png" data-background-size="cover">
                 <aside class="notes">
                     Packages need to be created
@@ -138,24 +105,29 @@
             <section>
                 <h3>Greedy code</h3>
                 <pre>
-                    <code class="hljs language-java">var remainingVisits = new ArrayList<>(allVisits); //copy
+                    <code class="hljs language-java">var remaining = new ArrayList<>(allVisits); //copy
 var visitOrder = new ArrayList<>();
 
 Visit latest = remaining.getFirst();
-visitOrder.add(latestVisit);
-remaining.remove(latestVisit);
+visitOrder.add(latest);
+remaining.remove(latest);
 
 int remainingSize = remaining.size();
 for (int i = 0; i < remainingSize-1; i++) {
     Visit closestVisit = findClosest(latest, remaining);
     visitOrder.add(closestVisit);
-    remainingVisits.remove(closestVisit);
+    remaining.remove(closestVisit);
     latest = closestVisit;
 }
                     </code>
                 </pre>
             </section>
             <section>
+                <aside class="notes">
+                    <h3>Santa is somewhat disappointed, he expected the <b>Optimal</b> solution, not just a <b>Feasible</b> solution</h3>
+
+                    Mention "THE" optimal solution is a tricky question.
+                </aside>
                 <h3>Algorithm comparison</h3>
                 <table style="margin-top: 100px; table-layout:fixed">
                     <thead>
@@ -184,12 +156,6 @@ for (int i = 0; i < remainingSize-1; i++) {
                     </tbody>
                 </table>
             </section>
-            <section data-background-color="#3e00ff">
-                <h3>Santa is somewhat disappointed, he expected the <b>Optimal</b> solution, not just a <b>Feasible</b> solution</h3>
-                <aside class="notes">
-                    Mention "THE" optimal solution is a tricky question.
-                </aside>
-            </section>
             <section>
                 <h2>Let's try everything! <br /><span class="highlight">Brute Force</span> 💪 </h2>
             </section>
@@ -197,7 +163,7 @@ for (int i = 0; i < remainingSize-1; i++) {
                 <h3>Brute Force Code</h3>
                 <pre xml:space="preserve">
                     <code class="java">
-// See IDE... beware of the recursion!
+//  ⚠ RECURSION AHEAD ⚠!
                     </code>
                 </pre>
                 <aside class="notes">
@@ -228,52 +194,8 @@ for (int i = 0; i < remainingSize-1; i++) {
                 <img src="../src/content/static/benchmarks/bruteForceHitsTheWall-TSP_10.png" class="fullImage fragment">
             </section>
             <section>
-                <div class="countdown-container">
-                    <div class="countdown-title">🎄Time Until Christmas 🎄</div>
-                    <div class="countdown">
-                        <div class="time-section">
-                            <div id="days" class="time-value">00</div>
-                            <div class="time-label">Days</div>
-                        </div>
-                        <div class="time-section">
-                            <div id="hours" class="time-value">00</div>
-                            <div class="time-label">Hours</div>
-                        </div>
-                        <div class="time-section">
-                            <div id="minutes" class="time-value">00</div>
-                            <div class="time-label">Minutes</div>
-                        </div>
-                        <div class="time-section">
-                            <div id="seconds" class="time-value">00</div>
-                            <div class="time-label">Seconds</div>
-                        </div>
-                    </div>
-                </div>
+                <div><christmas-countdown></christmas-countdown></div>
                 <div class="fragment">😱</div>
-                <script>
-                    function updateCountdown() {
-                        const now = new Date();
-                        const christmas = new Date(now.getFullYear(), 11, 25);
-
-                        let secondsLeft = Math.floor((christmas - now) / 1000);
-
-                        // Calculate each unit
-                        const days = Math.floor(secondsLeft / 86400); // 86400 seconds in a day
-                        secondsLeft %= 86400;
-                        const hours = Math.floor(secondsLeft / 3600); // 3600 seconds in an hour
-                        secondsLeft %= 3600;
-                        const minutes = Math.floor(secondsLeft / 60);
-                        const seconds = secondsLeft % 60;
-
-                        document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-                    }
-
-                    updateCountdown();
-                    setInterval(updateCountdown, 1000);
-                </script>
             </section>
             <section>
                 <h3>Algorithm comparison</h3>
@@ -330,7 +252,10 @@ for (int i = 0; i < remainingSize-1; i++) {
                 <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingLocalSearchAlgorithms_4.png" class="fullImage fragment">
             </section>
             <section>
-                Add example of Advanced Algorithm in a bit more detail.
+                <figure>
+                    <img src="../src/content/static/santa/article-reference.png">
+                    <figcaption style="font-size: medium">Read more: https://blog.picnic.nl/hill-climbing-towards-good-plannings-with-timefold-1a73a25d5093</figcaption>
+                </figure>
             </section>
             <section>
                 <h2>Implement yourself?</h2>
@@ -350,23 +275,23 @@ for (int i = 0; i < remainingSize-1; i++) {
             <section data-transition="fade-out">
                 ADD DIAGRAM to show where we land in the AI landscape
             </section>
-            <!--<section class="stacked-images">
-                <img src="../src/content/timefold-solver-docs/introduction/compatibility_0.png" class="fullImage">
-                <img src="../src/content/timefold-solver-docs/introduction/compatibility_1.png" class="fullImage fragment">
-                <img src="../src/content/timefold-solver-docs/introduction/compatibility_2.png" class="fullImage fragment">
-                <img src="../src/content/timefold-solver-docs/introduction/compatibility_3.png" class="fullImage fragment">
-                <img src="../src/content/timefold-solver-docs/introduction/compatibility_4.png" class="fullImage fragment">
-            </section>-->
             <section class="stacked-images">
                 Modeling the domain
-                <!-- TODO add class diagram -->
-                <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingArchitectureQuarkus_3.png" class="fullImage">
-                <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingArchitectureQuarkus_4.png" class="fullImage fragment">
-                <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingClassDiagram_1.png" class="fullImage fragment">
-                <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingClassDiagram_2.png" class="fullImage fragment">
+                <img src="../src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram_0.png" class="fullImage">
+                <img src="../src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram_1.png" class="fullImage fragment">
+                <img src="../src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram_2.png" class="fullImage fragment">
             </section>
             <section>
-                Demo implementation with simple scoring mechanism
+                    <h3>Easy score calculator</h3>
+                    <pre xml:space="preserve"><code class="java">public HardSoftScore calculateScore(VehicleRoutePlan plan) {
+    long totalDrivingTime = 0;
+
+    for(Vehicle v : plan.getVehicles()) {
+        totalDrivingTime += v.getTotalDrivingTimeSeconds();
+    }
+
+    return HardSoftScore.of(0, totalDrivingTime*-1);
+}</code></pre>
             </section>
             <section>
                 <h3>Algorithm comparison</h3>
@@ -509,12 +434,12 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
     return factory.forEach(Visit.class)
         .filter(visit -> visit.getVehicle() != null)
 
-        .groupBy(Visit::getVehicle, count()))
+        .groupBy(Visit::getVehicle, sum(Visit::giftAmount))
 
-        .filter((v, count) -> count > vehicle.getCapacity())
+        .filter((v, gifts) -> gifts > vehicle.getCapacity())
 
         .penalizeLong(HardSoftLongScore.ONE_HARD,
-                (v, count) -> count - vehicle.getCapacity())
+                (v, gifts) -> count - vehicle.getCapacity())
 
         .asConstraint("Vehicle Capacity");
 }
@@ -532,9 +457,34 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
                 </ul>
             </section>
             <section>
-                Incremental Score Calculation
-
-                - Show same move example here.
+                <h3>Incremental Score Calculation</h3>
+                Ex. Adding a new package: <img width="30px" style="filter: drop-shadow(0px 0px 10px red) hue-rotate(180deg) contrast(160%) " src="../src/content/static/santa/gift-marker.png" />
+                <br/>
+                <br/>
+                <span class="fragment">
+                    Before:
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                </span>
+                <br />
+                <span class="fragment">
+                After:
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px" style="filter: hue-rotate(180deg)"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px" style="filter: drop-shadow(0px 0px 10px red) hue-rotate(180deg) contrast(160%) " src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px" style="filter: hue-rotate(180deg)"  src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px" src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px" src="../src/content/static/santa/gift-marker.png" />
+                <img width="30px" src="../src/content/static/santa/gift-marker.png" />
+                </span>
             </section>
         </section>
 
@@ -543,9 +493,9 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
             <section data-background-color="#3e00ff">
                 <h2>In conclusion</h2>
                 Feasible is easy, Optimal is (impossibly)-hard
-
+            </section>
+            <section>
                 Balance between as much as possible to optimal, within the time window.
-
             </section>
             <section>
                 <h3 class="fragment">🖊 Model domain</h3>
@@ -562,16 +512,19 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
             </ol>
         </section>
             <section data-background-image="../src/content/static/santa/productionline.png" data-background-size="cover">
-                <div class="countdown-container fragment">Quickstart: Food Packaging</div>
+                <div class="endingcard fragment">Quickstart: Food Packaging</div>
             </section>
             <section data-background-image="../src/content/static/santa/schedule.webp" data-background-size="cover">
-                <div class="countdown-container fragment">Quickstart: Employee Scheduling</div>
+                <div class="endingcard fragment">Quickstart: Employee Scheduling</div>
             </section>
             <section data-background-image="../src/content/static/santa/route.webp" data-background-size="cover">
-                <div class="countdown-container fragment">Quickstart: Vehicle Routing</div>
+                <div class="endingcard fragment">Quickstart: Vehicle Routing</div>
+            </section>
+            <section data-background-image="../src/content/static/santa/route.webp" data-background-size="cover">
+                <div class="endingcard fragment">Timefold Platform</div>
             </section>
         <section>
-            <h3> <span class="highlight"> 🎁 Merry Christmas!  🎁</span></h3>
+            <h3> <span class="highlight"> 🎁 Merry Christmas! 🎁</span></h3>
             <table class="links">
                 <tr>
                     <th>Learn more</th>
@@ -600,14 +553,18 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
 <script src="../src/web/reveal/plugin/highlight/highlight.js"></script>
 <script src="../src/web/reveal/plugin/notes/notes.js"></script>
 
-<script>
+<script src="../src/content/elements/christmas-countdown.js"></script>
 
+<script>
     Reveal.initialize({
         center: true,
         hash: true,
         showNotes: false,
         progress: false,
-        plugins: [ RevealHighlight, RevealNotes ]
+        plugins: [ RevealHighlight, RevealNotes ],
+        margin: 0.05,
+        minScale: 0.2,
+        maxScale: 100.0
     });
 </script>
 
