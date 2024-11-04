@@ -105,9 +105,9 @@ footer {
     box-shadow: none;
 }
 
-/* Make images bigger, but only for multiple images in same section*/
-.reveal .slides section .stacked-images {
-  height: inherit;
+/* Make images bigger, but only for images in same section as direct child*/
+.reveal section:has(>img) {
+    height: inherit;
 }
 
 .reveal .fullImage {
