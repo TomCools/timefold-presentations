@@ -58,7 +58,6 @@
                 </p>
             </div>
         </section>
-
         <section>
             <section>Halloween is behind us</section>
             <section>Days are getting darker and colder</section>
@@ -81,6 +80,7 @@
             <section>
                 <h2>These are all </br> <span class="highlight">planning problems</span></h2>
                 <aside class="notes">PROMISE by the end of this session, you'll get a better grasp</aside>
+                <p class="fragment"> <span class="highlight">Optimize goals</span> with <span class="highlight">limited resources</span> under <span class="highlight">constraints</span></p>
             </section>
             <section data-background-image="../src/content/static/santa/route.webp" data-background-size="cover">
                 <aside class="notes">
@@ -121,6 +121,25 @@ for (int i = 0; i < remainingSize-1; i++) {
 }
                     </code>
                 </pre>
+            </section>
+            <section>
+                Greed != Good
+            </section>
+            <section>
+                <img src="../src/content/static/santa/tree-of-greed_0.png" class="fullImage">
+                <img src="../src/content/static/santa/tree-of-greed_1.png" class="fullImage fragment">
+                <img src="../src/content/static/santa/tree-of-greed_2.png" class="fullImage fragment">
+                <img src="../src/content/static/santa/tree-of-greed_3.png" class="fullImage fragment">
+                <img src="../src/content/static/santa/tree-of-greed_4.png" class="fullImage fragment">
+                <img src="../src/content/static/santa/tree-of-greed_5.png" class="fullImage fragment">
+            </section>
+            <section>
+                <img src="../src/content/static/santa/tree-of-greed2_0.png" class="fullImage">
+                <img src="../src/content/static/santa/tree-of-greed2_1.png" class="fullImage fragment">
+                <img src="../src/content/static/santa/tree-of-greed2_2.png" class="fullImage fragment">
+                <img src="../src/content/static/santa/tree-of-greed2_3.png" class="fullImage fragment">
+                <img src="../src/content/static/santa/tree-of-greed2_4.png" class="fullImage fragment">
+                <img src="../src/content/static/santa/tree-of-greed2_5.png" class="fullImage fragment">
             </section>
             <section>
                 <aside class="notes">
@@ -244,18 +263,11 @@ for (int i = 0; i < remainingSize-1; i++) {
                 </ul>
             </section>
             <section>
-                REPLACE
-                <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingLocalSearchAlgorithms_0.png" class="fullImage">
-                <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingLocalSearchAlgorithms_1.png" class="fullImage fragment">
-                <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingLocalSearchAlgorithms_2.png" class="fullImage fragment">
-                <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingLocalSearchAlgorithms_3.png" class="fullImage fragment">
-                <img src="../src/content/timefold-solver-docs/quickstart/school-timetabling/schoolTimetablingLocalSearchAlgorithms_4.png" class="fullImage fragment">
-            </section>
-            <section>
-                <figure>
-                    <img src="../src/content/static/santa/article-reference.png">
-                    <figcaption style="font-size: medium">Read more: https://blog.picnic.nl/hill-climbing-towards-good-plannings-with-timefold-1a73a25d5093</figcaption>
-                </figure>
+                <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_0.png" class="fullImage">
+                <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_1.png" class="fullImage fragment">
+                <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_2.png" class="fullImage fragment">
+                <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_3.png" class="fullImage fragment">
+                <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_4.png" class="fullImage fragment">
             </section>
             <section>
                 <h2>Implement yourself?</h2>
@@ -272,25 +284,27 @@ for (int i = 0; i < remainingSize-1; i++) {
                     <li class="fragment">AI, not ML</li>
                 </ul>
             </section>
-            <section data-transition="fade-out">
-                ADD DIAGRAM to show where we land in the AI landscape
+            <section>
+                <figure>
+                    <img src="../src/content/static/santa/article-reference.png">
+                    <figcaption style="font-size: medium">Read more: https://blog.picnic.nl/hill-climbing-towards-good-plannings-with-timefold-1a73a25d5093</figcaption>
+                </figure>
             </section>
             <section>
-                Modeling the domain
                 <img src="../src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram_0.png" class="fullImage">
                 <img src="../src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram_1.png" class="fullImage fragment">
                 <img src="../src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram_2.png" class="fullImage fragment">
             </section>
             <section>
                     <h3>Easy score calculator</h3>
-                    <pre xml:space="preserve"><code class="java">public HardSoftScore calculateScore(VehicleRoutePlan plan) {
+                    <pre xml:space="preserve"><code class="java">public HardSoftLongScore calculateScore(VehicleRoutePlan plan) {
     long totalDrivingTime = 0;
 
     for(Vehicle v : plan.getVehicles()) {
         totalDrivingTime += v.getTotalDrivingTimeSeconds();
     }
 
-    return HardSoftScore.of(0, totalDrivingTime*-1);
+    return HardSoftLongScore.of(0, totalDrivingTime*-1);
 }</code></pre>
             </section>
             <section>
@@ -485,6 +499,13 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
                 <img width="30px" src="../src/content/static/santa/gift-marker.png" />
                 <img width="30px" src="../src/content/static/santa/gift-marker.png" />
                 </span>
+                <br />
+                <br />
+                <br />
+
+                <span class="fragment">
+                    Only Azure <img width="30px" style="filter: drop-shadow(0px 0px 10px red) hue-rotate(180deg) contrast(160%) " src="../src/content/static/santa/gift-marker.png" /> gifts are recalculated
+                </span>
             </section>
         </section>
 
@@ -495,10 +516,11 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
                 Feasible is easy, Optimal is (impossibly)-hard
             </section>
             <section>
-                Balance between as much as possible to optimal, within the time window.
+                <h2>These are all </br> <span class="highlight">planning problems</span></h2>
+                <p class="fragment"> <span class="highlight">Optimize goals</span> with <span class="highlight">limited resources</span> under <span class="highlight">constraints</span></p>
             </section>
             <section>
-                <h3 class="fragment">🖊 Model domain</h3>
+                <h3>🖊 Model domain</h3>
                 <h3 class="fragment">⚖️ Define constraints</h3>
                 <h3 class="fragment"><span class="highlight"> 🚀 Run!</span></h3>
             </section>
@@ -544,9 +566,8 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
                 </tr>
             </table>
         </section>
-
-
-    </div></div>
+    </div>
+</div>
 
 <script src="../src/web/jquery/jquery.min.js"></script>
 <script src="../src/web/reveal/js/reveal.js"></script>
@@ -554,6 +575,9 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
 <script src="../src/web/reveal/plugin/notes/notes.js"></script>
 
 <script src="../src/content/elements/christmas-countdown.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="../src/content/elements/leaflet-drawer.js"></script>
 
 <script>
     Reveal.initialize({
@@ -561,6 +585,11 @@ Constraint vehicleCapacity(ConstraintFactory factory) {
         hash: true,
         showNotes: false,
         progress: false,
+        controls: false,
+        keyboard: {
+            37: 'prev',
+            39: 'next',
+        },
         plugins: [ RevealHighlight, RevealNotes ],
         margin: 0.05,
         minScale: 0.2,

@@ -44,11 +44,38 @@
         <img src="../src/content/static/benchmarks/bruteForceHitsTheWall-TSP_9.png" class="fullImage fragment">
         <img src="../src/content/static/benchmarks/bruteForceHitsTheWall-TSP_10.png" class="fullImage fragment">
     </section>
+    <section>
+        <img src="../src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram_0.png" class="fullImage">
+        <img src="../src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram_1.png" class="fullImage fragment">
+        <img src="../src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram_2.png" class="fullImage fragment">
+    </section>
+    <section>
+        <img src="../src/content/static/santa/tree-of-greed_0.png" class="fullImage">
+        <img src="../src/content/static/santa/tree-of-greed_1.png" class="fullImage fragment">
+        <img src="../src/content/static/santa/tree-of-greed_2.png" class="fullImage fragment">
+        <img src="../src/content/static/santa/tree-of-greed_3.png" class="fullImage fragment">
+        <img src="../src/content/static/santa/tree-of-greed_4.png" class="fullImage fragment">
+        <img src="../src/content/static/santa/tree-of-greed_5.png" class="fullImage fragment">
+    </section>
+    <section>
+        <img src="../src/content/static/santa/tree-of-greed2_0.png" class="fullImage">
+        <img src="../src/content/static/santa/tree-of-greed2_1.png" class="fullImage fragment">
+        <img src="../src/content/static/santa/tree-of-greed2_2.png" class="fullImage fragment">
+        <img src="../src/content/static/santa/tree-of-greed2_3.png" class="fullImage fragment">
+        <img src="../src/content/static/santa/tree-of-greed2_4.png" class="fullImage fragment">
+        <img src="../src/content/static/santa/tree-of-greed2_5.png" class="fullImage fragment">
+    </section>
+    <section>
+        <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_0.png" class="fullImage">
+        <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_1.png" class="fullImage fragment">
+        <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_2.png" class="fullImage fragment">
+        <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_3.png" class="fullImage fragment">
+        <img src="../src/content/timefold-solver-docs/optimization-algorithms/koptMove_4.png" class="fullImage fragment">
+    </section>
 </div></div>
 
 <script src="../src/web/jquery/jquery.min.js"></script>
 <script src="../src/web/reveal/js/reveal.js"></script>
-<script src="../src/web/reveal/plugin/highlight/highlight.js"></script>
 
 <script>
   var showControls = true;
@@ -61,13 +88,18 @@
     controls: showControls,
     progress: true,
     history: true,
-    center: true,
-    plugins: [ RevealHighlight ],
+    center: false,
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'linear', // page/linear/fade/none
 
     margin: 0.05,
     minScale: 0.2,
     maxScale: 100.0
   });
+</script>
+<script src="../src/web/highlight/highlight.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
 </script>
 
 </body>

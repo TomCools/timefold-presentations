@@ -96,6 +96,10 @@ cat src/script/templates/slidedeck-header.html > slidedecks/inventory.html
 # A selection of static images
 #extractLayers src/content/static/benchmarks/bruteForceHitsTheWall.svg
 extractLayers src/content/static/benchmarks/bruteForceHitsTheWall-TSP.svg
+extractLayers src/content/timefold-solver-docs/quickstart/vehicle-routing/vehicleRoutingClassDiagram.svg
+extractLayers src/content/static/santa/tree-of-greed.svg
+extractLayers src/content/static/santa/tree-of-greed2.svg
+extractLayers src/content/timefold-solver-docs/optimization-algorithms/koptMove.svg
 
 
 cat src/script/templates/slidedeck-footer.html >> slidedecks/inventory.html
